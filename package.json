@@ -1,0 +1,23 @@
+{
+  "name": "shamweb",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "predev": "node scripts/ensure-backend-env.js",
+    "dev": "concurrently -k -n API,WEB -c blue,magenta \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
+    "setup:env": "node scripts/ensure-backend-env.js",
+    "build": "npm run build --workspace=frontend",
+    "start": "npm run start --workspace=backend",
+    "test": "npm run test --workspace=backend && npm run test --workspace=frontend",
+    "seed:admin": "npm run seed:admin --workspace=backend",
+    "reset:admin": "npm run reset:admin --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
